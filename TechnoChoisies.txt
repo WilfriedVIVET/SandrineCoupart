@@ -1,0 +1,18 @@
+
+			Techno:
+
+FRONT:
+JS React
+css
+bootstrap
+
+
+
+
+BACK:
+PHP7
+PDO
+MySQL
+
+KANBAN:
+TRELLO

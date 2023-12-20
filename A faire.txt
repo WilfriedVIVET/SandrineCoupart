@@ -1,0 +1,42 @@
+
+Trello
+
+Git hub
+
+Diagramme de classe
+
+Diagramme de cas d'utilisation
+
+Diagramme de séquence
+
+...
+
+Charte graphique=
+	palette de couleur,
+	polices,
+
+Wireframe ou mockup version desktop et mobile
+
+Création du site:
+Front:
+
+Pages:
+	Se connecter => admin ou patient
+	Créer un patient=> en fonction du formulaire patient
+	Ajouter une recette + checkbox pour seulement patient
+	Recettes=> recette de base pour visiteurs
+		   recettes suplementaire aux patients connectés
+			+filtrage automatique en fonction du regime et allergene
+		   Avis + note de 1 à 5
+
+menu:
+	Accueil => A propos , Mes services
+	Recettes
+	Se connecter.
+	Contact => formulaire = nom, prenom, adresse, mail, allergene
+	Mentions légales(obligatoire depuis 2004)
+	Politique de confidentialité(obligatoire rgpd 2018)
+
+
+Back:
+	Création base de donnée
