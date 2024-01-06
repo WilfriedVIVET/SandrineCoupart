@@ -9,7 +9,8 @@ Diagramme de cas d'utilisation
 
 Diagramme de séquence
 
-...
+Diagramme d'activité
+
 
 Charte graphique=
 	palette de couleur,

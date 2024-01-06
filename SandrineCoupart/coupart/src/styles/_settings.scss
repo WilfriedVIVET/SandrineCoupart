@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "font-1";
+    font-weight: 400 500;
+    src: url(../assets/fonts/IndieFlower-Regular.ttf);
+}
+
+$font-1: "font-1", sans-serif;
+
+$white: #f9e5e7bd;
+$color-2: salmon;
+$color-3: #282c34;
+
+
+*{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+body{
+    background: url("../assets/images/fruits.jpg") no-repeat fixed 10% 10%;
+    //position: relative;
+    font-family: $font-1;
+    height: 100%;
+    min-height: 100vh;
+    max-width: 100vw;
+}
+
+h1, h2, h3, p, span, a{
+    color: $color-3;
+}
+
+li{
+    text-decoration: none;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: $white;
+}
+
+.blanc{
+    height: 20%;
+    background-color: #282c3400;
+}
+
+.trait {
+    height: 2px;
+    width: 220px;
+    background-color: $color-2;
+    margin-bottom: 5px;
+   }

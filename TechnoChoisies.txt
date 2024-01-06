@@ -4,7 +4,7 @@
 FRONT:
 JS React
 css
-bootstrap
+
 
 
 

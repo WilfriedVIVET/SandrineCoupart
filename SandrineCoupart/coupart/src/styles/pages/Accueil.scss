@@ -1,0 +1,140 @@
+
+
+.propos-container{
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    align-items: center;
+
+    >.portrait{
+        height: 100%;
+        width: 40%;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+   
+      > #image{
+            height: 100%;
+            width: 100%;
+            border-radius: 50px;
+            object-fit: cover;
+        }
+    }
+
+    > .propos{
+        height: 100%;
+        width: 40%;
+        border-radius: 50px;
+        background-color:$white;
+        display: flex;
+        flex-direction: column;
+              
+        >.title {
+            margin-top: 20px;
+            height: 50px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        >.text{
+            height: 100%;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            margin:auto;
+
+            > p ,.sign{
+                font-size: 1.4em;
+                font-weight: bold;
+            }
+        }
+       
+        .sign{
+            height: 30px;
+            width: 250px;
+            margin-left: 65%;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.service-container{
+    height: 100vh;
+    width: 100%;
+    margin-top: 20px;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    
+    
+    >.service{
+        height: 10%;
+        width: 100%;
+        text-align: center;
+        margin-top: 80px;
+    }
+     
+    p {
+        font-size: 1.8em;
+        color: $color-3;
+        font-weight: bold;
+      }
+   
+    .connexion{
+        background-color: salmon;
+        height: 80px;
+        margin:55px auto  55px;
+        width: 20%;
+        border: none;
+        font-family: $font-1;
+        font-size: 3em;
+        font-weight: 600;
+        background-color: $color-2;
+        letter-spacing: 4px;
+        box-shadow: 3px 3px 3px 3px rgba(255, 116, 116, 0.62);
+            
+      }
+
+    .connexion:hover{
+        scale: 1.1;
+    }
+
+    .trait{
+        height: 4px;
+        width: 45%;
+        margin: auto;
+        border-radius: 50px;
+        background-color: $color-2;
+      }
+     /************************************************/ 
+    .reseaux{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        margin-top: 40px;
+        }
+  
+    .sociaux{
+       margin-top: 50px;
+       height: 100px;
+       width: 100%;
+       display: flex;
+       justify-content: center;
+             
+        >ul{
+            width: 40%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        img{
+                height: 100%;
+            }
+      }
+}

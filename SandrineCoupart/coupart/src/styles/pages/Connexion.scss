@@ -1,0 +1,70 @@
+
+.connexion-container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulaire{
+        height: 60%;
+        width: 30%;
+        background-color: $white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 50px;
+        padding: 20px;
+   
+        >h1{
+            text-align: center;
+            height: 10%;
+        }
+
+    >.input-box{
+        height: 15%;
+        width: 80%;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+       
+
+        > input{
+            border: none;
+            height: 70%;
+            width: 80%;
+            outline: none;
+            border-radius: 50px;
+            padding-left: 10px;
+        }
+
+       > input::placeholder{
+        font-weight: bold;
+        color: $color-2;
+       }
+      
+    > .input-info{
+        height: 50%;
+        width: 80%;
+        border-radius: 50px;
+        padding-left: 10px;
+        color: red;
+       }
+    
+}
+    >.btn-valider{
+        height: 15%;
+        background-color: $color-2;
+        color: $color-3;
+        width: 60%;
+        border-radius: 50px;
+        //margin: auto;
+        font-size: 2em;
+        letter-spacing: 3px;
+        font-family: $font-1;
+        font-weight: bold;
+    }
+    
+}
