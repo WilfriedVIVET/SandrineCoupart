@@ -1,0 +1,63 @@
+.navbar{
+    height: 60px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(138, 105, 44, 0.895);
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+}
+   
+.navbar .logo{
+        font-size: 2em;
+        font-weight: bold;
+    }
+     
+.nav-link{
+    position: absolute;
+    top: 59px;
+    left: 0px;
+    height: 80vh;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(138, 105, 44, 0.895);
+    margin-left: -100%;
+    transition: all 0.5s ease;
+}
+
+.navbar .nav-link ul{
+    padding-top: 40px;
+    text-align: center;
+}    
+
+.navbar .nav-link ul li{
+   margin: 15px 15px;
+   }   
+    
+.burger{
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        height: 30px;
+        width: 30px;
+     }
+
+.mobile-menu {
+    margin-left: 0;
+    border-bottom-right-radius: 50px;
+}
+
+.espace{
+    height: 55%;
+}
+
+.reference{
+    font-size: 0.7em;
+}
+
+.nav-active{
+    text-decoration: underline;
+}

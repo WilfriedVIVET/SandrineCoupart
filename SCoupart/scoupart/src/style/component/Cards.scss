@@ -1,0 +1,49 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 90%;
+  background-color:rgb(216, 77, 77);
+  border-radius: 35px;
+  padding-left: 25px;
+  justify-content: center;
+  
+  
+  margin-bottom: 10px;
+  
+ span{
+  font-size: 1.2em;
+ }
+
+  > .card-title {
+    height: 9%;
+    display: flex;
+    justify-content: flex-start;
+    text-transform: capitalize;
+    margin: 20px;
+    
+  }
+
+  > .prepa {
+    height: 35%;
+   
+    
+  }
+
+  > .step {
+    height: 15%;
+    
+  }
+
+  > .card-footer {
+    height: 15%;
+    
+  }
+
+  > .notice {
+    height: 10%;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    
+  }
+}

@@ -1,0 +1,113 @@
+
+
+.propos-container{
+   height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+}
+
+.propos{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+
+    > h2{
+        text-decoration: underline;
+    }
+}
+
+#portrait{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    border: 2px solid black;
+    object-fit:cover;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    
+    
+}
+
+.trait{
+    height: 3px;
+    width: 70%;
+    background-color: red;
+}
+
+.sign{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+/***************************************************/
+
+.service-container{
+    margin: 10px;
+    height: auto;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    
+}
+
+.service{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+img{
+    height: 20%;
+    width: 20%;
+}
+
+.connexion {
+    display: flex;
+    height: 50px;
+    width: 30%;
+    background-color: red;
+    margin: 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.btn-connexion{
+    height: auto;
+    align-items: center;
+}
+
+.sociaux ul{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.sociaux ul li{
+    height: 20%;
+}
+
+.sociaux{
+   display: flex;
+   height: 50px;
+   width: 100%;
+   align-items: center;
+   text-align: center;
+   
+   
+    
+}

@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    
+}
+
+body{
+    background-color: rgb(122, 122, 122);
+    background: url("../assets/images/fruits.jpg") no-repeat fixed 100% 100%;
+}
+
+a{
+    color: white;
+}
+
+.container{
+    
+    margin: auto;
+    height: auto;
+    width: 95%;
+    background-color: aliceblue;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
