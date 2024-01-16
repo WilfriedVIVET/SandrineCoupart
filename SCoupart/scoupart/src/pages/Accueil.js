@@ -48,6 +48,12 @@ const Accueil = () => {
                 Connexion
               </NavLink>
             </div>
+            <p>Ou contactez-moi afin de vous enregistrer.</p>
+            <div className="connexion">
+              <NavLink to="/contact" className="btn-connexion">
+                Contactez-moi.
+              </NavLink>
+            </div>
             <div className="reseaux">
               <p>Vous pouvez egalement me suivre sur mes reseaux sociaux.</p>
               <div className="sociaux">

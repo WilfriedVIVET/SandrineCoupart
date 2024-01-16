@@ -7,6 +7,7 @@
 }
 
 body{
+   
     background-color: rgb(122, 122, 122);
     background: url("../assets/images/fruits.jpg") no-repeat fixed 100% 100%;
 }
@@ -16,13 +17,25 @@ a{
 }
 
 .container{
-    
     margin: auto;
     height: auto;
     width: 95%;
-    background-color: aliceblue;
+    background-color: rgb(138, 145, 151);
     border-radius: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
     
+}
+
+
+
+.btn {
+    display: flex;
+    height: 50px;
+    width: 30%;
+    background-color: red;
+    margin: 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
 }

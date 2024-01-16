@@ -1,8 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { isEmpty } from "./Utils";
 
 const Navbar = () => {
-  const [isActive, setIsActive] = useState("true");
+  const [isActive, setIsActive] = useState(true);
+  const [initial, setInitial] = useState("");
+
+  const userId = useSelector((state) => state.userIdReducer);
+
+  const makeInitial = (firstname, name) => {
+    const result = firstname[0].toUpperCase() + name[0].toUpperCase();
+    setInitial(result);
+  };
+
+  useEffect(() => {
+    if (!isEmpty(userId)) {
+      makeInitial(userId[0].firstname, userId[0].name);
+    }
+  });
 
   const menuBurger = () => {
     setIsActive(!isActive);
@@ -16,6 +32,14 @@ const Navbar = () => {
 
       <div className={`nav-link ${isActive ? "" : "mobile-menu"}`}>
         <ul>
+          <li className="li-navbar">
+            <NavLink
+              to="/connexion"
+              className={(nav) => (nav.isActive ? "nav-active" : "")}
+            >
+              Connexion
+            </NavLink>
+          </li>
           <li className="li-navbar">
             <NavLink
               to="/"
@@ -40,6 +64,14 @@ const Navbar = () => {
               Recettes
             </NavLink>
           </li>
+          <li className="li-navbar">
+            <NavLink
+              to="/admin"
+              className={(nav) => (nav.isActive ? "nav-active" : "")}
+            >
+              Admin
+            </NavLink>
+          </li>
         </ul>
         <div className="espace"></div>
         <ul>
@@ -55,9 +87,12 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      <div className="login">
+        <span>{initial}</span>
+      </div>
       <img
         src="burger.png"
-        alt="menu-burger"
+        alt="icone menu-burger"
         className="burger"
         onClick={menuBurger}
       />

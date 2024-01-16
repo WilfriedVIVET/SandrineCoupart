@@ -6,6 +6,7 @@ import Mention from "../pages/Mention";
 import Politique from "../pages/Politique";
 import Recettes from "../pages/Recette";
 import Connexion from "../pages/Connexion";
+import Admin from "../pages/Admin";
 
 const Site = () => {
   return (
@@ -17,6 +18,7 @@ const Site = () => {
         <Route path="/mention" element={<Mention />} />
         <Route path="/politique" element={<Politique />} />
         <Route path="/connexion" element={<Connexion />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
