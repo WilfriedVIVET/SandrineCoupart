@@ -5,6 +5,7 @@ const Contact = () => {
   return (
     <>
       <Header />
+
       <div className="contact">
         <div className="info">
           <span>

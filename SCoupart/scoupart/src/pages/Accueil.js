@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../component/Header";
 import { NavLink } from "react-router-dom";
+import { getUserId } from "../Redux/actions/userId.action";
 
 const Accueil = () => {
+  useEffect(() => {
+    getUserId();
+  });
+
   return (
     <>
       <Header />

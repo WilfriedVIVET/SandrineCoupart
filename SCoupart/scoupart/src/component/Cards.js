@@ -1,58 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Notice from "./Notice";
+import { isEmpty } from "../Utils/Utils";
+import { useSelector } from "react-redux";
 
-const Cards = ({ recip }) => {
+const Cards = ({ recipe }) => {
+  const [showNotice, setShowNotice] = useState(false);
+  const personalRecipes = useSelector((state) => state.personalRecipes);
+
+  useEffect(() => {
+    if (!isEmpty(personalRecipes)) {
+      setShowNotice(true);
+    }
+  }, [showNotice, personalRecipes]);
+
   return (
     <div className="card">
       <div className="card-title">
-        <h2>{recip.title}</h2>
+        <h2>{recipe.title}</h2>
       </div>
       <div className="trait"></div>
       <div className="prepa">
         <span>
-          <strong>Description :</strong> {recip.description}
+          <strong>Description :</strong> {recipe.description}
         </span>
         <br />
         <span>
-          <strong>Temps de préparation :</strong> {recip.preparation_time} min
+          <strong>Temps de préparation :</strong> {recipe.preparation_time} min
         </span>
         <br />
         <span>
-          <strong>Temps de cuisson :</strong> {recip.cooking_time} min
+          <strong>Temps de cuisson :</strong> {recipe.cooking_time} min
         </span>
         <br />
         <span>
-          <strong>Temps de repos :</strong> {recip.break_time} min
+          <strong>Temps de repos :</strong> {recipe.break_time} min
         </span>
         <br />
         <span>
-          <strong>Ingredients </strong>: {recip.ingredient}
+          <strong>Ingredients </strong>: {recipe.ingredient}
         </span>
       </div>
       <div className="trait"></div>
       <div className="step">
         <p>
-          <strong>Les étapes :</strong> {recip.step}
+          <strong>Les étapes :</strong> {recipe.step}
         </p>
       </div>
       <div className="trait"></div>
       <div className="card-footer">
         <span>
-          <strong>Allergene :</strong> {recip.allergen}
+          <strong>Allergene :</strong> {recipe.allergen}
         </span>
         <br />
         <span>
-          <strong>Régime :</strong> {recip.regime}
+          <strong>Régime :</strong> {recipe.regime}
         </span>
       </div>
       <div className="trait"></div>
-      <div className="notice">
-        <p>
-          <strong>Avis :</strong>
-        </p>
-        <p>
-          <strong>Note :</strong>
-        </p>
-      </div>
+      {showNotice && <Notice recipe={recipe} />}
     </div>
   );
 };

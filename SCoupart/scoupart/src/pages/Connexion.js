@@ -9,55 +9,48 @@ import store from "../Redux/store/store";
 const Connexion = () => {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [firstName, setFirstName] = useState("");
+  const [identity, setIdentity] = useState({
+    name: "",
+    firstName: "",
+  });
+
   const spanError = useRef(null);
-
-  const nameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const firstNameChange = (e) => {
-    setFirstName(e.target.value);
-  };
 
   const resetSpan = () => {
     spanError.current.innerText = "";
   };
 
+  const handleChange = (e) => {
+    resetSpan();
+    const { name, value } = e.target;
+
+    // Appliquer le remplacement uniquement si le champ est "firstName" ou "name"
+    const replacedValue = ["firstName", "name"].includes(name)
+      ? value.replace(/ /g, "-")
+      : value;
+
+    setIdentity((prevIdentity) => ({
+      ...prevIdentity,
+      [name]: replacedValue,
+    }));
+  };
+
   //Verification de la presence en base de donné de l utilisateur.
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const id = JSON.stringify({ name, firstName });
-    const url =
-      "http://localhost/API_COUPART/API/users/" + name + "/" + firstName;
-
-    const config = {
-      method: "post",
-      url: url,
-      data: id,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
     try {
-      axios(config).then((res) => {
-        if (res.data > 0) {
-          //=>page des recettes en fonction de l'utilisateur
-          if (name === "coupart" && firstName === "sandrine") {
-            console.log("admin");
-          } else {
-            store.dispatch(getUserId(name, firstName));
-            store.dispatch(getPersonalRecipes(name, firstName));
-            navigate("/recettes");
-          }
-        } else {
-          spanError.current.innerText = "Utilisateur non répertorié";
-        }
-      });
-    } catch {
-      console.log("probléme de recherche sur l'utilisateur");
+      const url = `http://localhost/API_COUPART/API/users/${identity.name}/${identity.firstName}`;
+      const res = await axios.get(url);
+
+      if (res.data > 0) {
+        store.dispatch(getUserId(identity.name, identity.firstName));
+        store.dispatch(getPersonalRecipes(identity.name, identity.firstName));
+        navigate("/recettes");
+      } else {
+        spanError.current.innerText = "Utilisateur non répertorié";
+      }
+    } catch (error) {
+      console.log("Erreur lors de la requete au serveur", error);
     }
   };
 
@@ -69,17 +62,19 @@ const Connexion = () => {
           <h2>Connexion</h2>
           <input
             type="text"
-            name="prenom"
+            name="firstName"
             placeholder="Votre prénom"
-            onBlur={firstNameChange}
-            onFocus={resetSpan}
+            required
+            value={identity.firstName}
+            onChange={handleChange}
           />
           <input
             type="text"
-            name="nom"
+            name="name"
             placeholder="Votre nom"
-            onBlur={nameChange}
-            onFocus={resetSpan}
+            required
+            value={identity.name}
+            onChange={handleChange}
           />
           <span className="erreur" ref={spanError}></span>
           <button className="btn" type="submit">

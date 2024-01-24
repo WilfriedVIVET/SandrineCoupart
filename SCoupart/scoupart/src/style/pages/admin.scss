@@ -3,21 +3,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-   
-    min-height: 100vh;
+    
     width: 95%;
     margin-left: 10px;
-    
+   background-color: grey; 
 }
 
 .form{
     border-radius: 50px;
     align-items: center;
     justify-content: center;
-   height: auto;
-   margin: 30px;
-   width: 90%;
-   display: flex;
-   flex-direction: column;
+    height: auto;
+    margin: 30px;
+   
+    width: 90%;
+    display: flex;
+    flex-direction: column;
     background-color: rgb(255, 255, 255);
 }
+

@@ -6,11 +6,8 @@ import App from "./App";
 //Redux
 import { Provider } from "react-redux";
 import store from "./Redux/store/store";
-import { getRecipes } from "./Redux/actions/recipes.action";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-store.dispatch(getRecipes());
 
 root.render(
   <Provider store={store}>

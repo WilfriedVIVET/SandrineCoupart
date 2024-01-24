@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Header from "../component/Header";
 import { useSelector } from "react-redux";
-import { isEmpty } from "../component/Utils";
+import { isEmpty } from "../Utils/Utils";
 import { getDiets } from "../Redux/actions/diets.action";
 import { getAllergens } from "../Redux/actions/allergens.action";
-import axios from "axios";
+import {
+  postNewUser,
+  postNewDiet,
+  postNewAllergen,
+  postNewRecipe,
+} from "../Utils/PostUtils.js";
 
 import store from "../Redux/store/store";
 
@@ -14,53 +19,121 @@ const Admin = () => {
     store.dispatch(getAllergens());
   }, []);
 
-  const diets = useSelector((state) => state.dietsReducer);
   const allergens = useSelector((state) => state.allergensReducer);
-  const [formData, setFormData] = useState({
+  const diets = useSelector((state) => state.dietsReducer);
+
+  //nouvel utilisateur
+  const [newUser, setNewUser] = useState({
     name: "",
     firstName: "",
-    diet: "",
+    selectedDiets: [],
+    selectedAllergens: [],
+  });
+  //Nouvelle recette
+  const [newDiet, setNewDiet] = useState({
+    nameDiets: "",
+  });
+  //Nouvel allergène
+  const [newAllergen, setNewAllergen] = useState({
+    nameAllergen: "",
+  });
+  //Nouvelle recette
+  const [newRecipe, setNewRecipe] = useState({
+    title: "",
+    description: "",
+    preparationTime: "",
+    breakTime: "",
+    cookingTime: "",
+    ingredient: "",
+    step: "",
+    selectedDiets: [],
     selectedAllergens: [],
   });
 
-  const postUser = async (formData) => {
-    console.log("formdata = " + JSON.stringify(formData));
-    try {
-      const response = await axios.post(
-        "http://localhost/API_COUPART/API/postUser.php",
-        formData
-      );
-
-      console.log("data envoyé avec succès ", response);
-    } catch (error) {
-      console.error("Erreur:", error);
-    }
-  };
-
-  const handleChange = (e) => {
+  const handleUserChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]:
-        type === "checkbox"
-          ? checked
+    setNewUser((prevData) => {
+      if (type === "checkbox") {
+        return {
+          ...prevData,
+          [name]: checked
             ? [...prevData[name], value]
-            : prevData[name].filter((item) => item !== value)
-          : value,
-    }));
+            : prevData[name].filter((item) => item !== value),
+        };
+      } else {
+        return {
+          ...prevData,
+          [name]: value,
+        };
+      }
+    });
   };
 
-  const handleSubmit = (e) => {
+  const handleRecipeChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    setNewRecipe((prevData) => {
+      if (type === "checkbox") {
+        const currentValue = prevData[name] || []; // Assurez-vous que c'est un tableau
+        return {
+          ...prevData,
+          [name]: checked
+            ? [...currentValue, value]
+            : currentValue.filter((item) => item !== value),
+        };
+      } else {
+        return {
+          ...prevData,
+          [name]: value,
+        };
+      }
+    });
+  };
+
+  //Post du nouvel utilisateur
+  const handleUser = async (e) => {
     e.preventDefault();
-    postUser(formData);
+    try {
+      await postNewUser(newUser);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de l'utilisateur:", error.message);
+    }
+  };
+  //Post du nouveau régime
+  const handleDiet = async (e) => {
+    e.preventDefault();
+    try {
+      await postNewDiet(newDiet);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout du régime:", error.message);
+    }
+  };
+  //Post du nouvel allergène
+  const handleAllergen = async (e) => {
+    e.preventDefault();
+    try {
+      await postNewAllergen(newAllergen);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de l'allergène:", error.message);
+    }
+  };
+  //Post de la nouvelle recette
+  const handleRecipes = async (e) => {
+    e.preventDefault();
+    try {
+      await postNewRecipe(newRecipe);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de la recette:", error.message);
+    }
   };
 
   return (
     <>
       <Header />
       <div className="container-admin">
-        <form onSubmit={handleSubmit} className="form">
+        {/* Création utilisateur **********************************************************************************************/}
+        <form onSubmit={handleUser} className="form">
           <fieldset className="form">
             <legend>Nouveau utilisateur</legend>
             <label htmlFor="firstName">Prénom :</label>
@@ -68,62 +141,185 @@ const Admin = () => {
               type="text"
               id="firstName"
               name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
+              value={newUser.firstName}
+              required
+              onChange={handleUserChange}
             />
-
             <br />
             <label htmlFor="name">Nom :</label>
             <input
               type="text"
               id="name"
               name="name"
-              value={formData.name}
-              onChange={handleChange}
+              value={newUser.name}
+              required
+              onChange={handleUserChange}
             />
             <br />
-            <label htmlFor="diet">Sélectionnez un Régime :</label>
-            <select
-              id="diet"
-              name="diet"
-              value={formData.diet}
-              onChange={handleChange}
-            >
-              {!isEmpty(diets) &&
-                diets.map((diet, index) => (
-                  <option key={index} value={diet.diet_id}>
+            <label htmlFor="diet">Sélectionnez des Régimes :</label>
+            {!isEmpty(diets) &&
+              diets.map((diet, index) => (
+                <div key={index} name="diet">
+                  <label htmlFor={diet.diet_id}>
                     {diet.diet_id + " " + diet.diet_name}
-                  </option>
-                ))}
-            </select>
+                  </label>
+                  <input
+                    type="checkbox"
+                    name="selectedDiets"
+                    value={diet.diet_id}
+                    onChange={handleUserChange}
+                  />
+                </div>
+              ))}
             <br />
             <label htmlFor="allergen">Sélectionnez des allergènes :</label>
             {!isEmpty(allergens) &&
               allergens.map((allergen, index) => (
-                <div key={index}>
+                <div key={index} name="allergen">
                   <label htmlFor={allergen.allergen_id}>
                     {allergen.allergen_id + " " + allergen.allergen_name}
                   </label>
                   <input
                     type="checkbox"
-                    id="allergen"
                     name="selectedAllergens"
                     value={allergen.allergen_id}
-                    checked={formData.selectedAllergens.includes(
-                      String(allergen.allergen_id)
-                    )}
-                    onChange={handleChange}
+                    onChange={handleUserChange}
                   />
                 </div>
               ))}
-
             <button type="submit">Enregistrer</button>
           </fieldset>
         </form>
-        <div className="newUser"></div>
-        <div className="newRecipe"></div>
-        <div className="newAllergen"></div>
-        <div className="newDiet"></div>
+        {/* Création d'un régime *****************************************************************************************/}
+        <form onSubmit={handleDiet} className="form">
+          <fieldset className="form">
+            <legend>Nouveau régime</legend>
+            <label htmlFor="diet">Ajouter un nouveau régime:</label>
+            <input
+              type="text"
+              name="diet"
+              id="diet"
+              required
+              onChange={(e) => setNewDiet(e.target.value)}
+            />
+            <button type="submit">Ajouter</button>
+          </fieldset>
+        </form>
+        {/* Création d'un allergène *******************************************************************************************/}
+        <form onSubmit={handleAllergen} className="form">
+          <fieldset className="form">
+            <legend>Nouvel allergène</legend>
+            <label htmlFor="allergen">Ajouter un allergène</label>
+            <input
+              type="text"
+              id="allergen"
+              name="allergen"
+              required
+              onChange={(e) => setNewAllergen(e.target.value)}
+            />
+            <button type="submit">Ajouter</button>
+          </fieldset>
+        </form>
+        {/* Création d'une recette**************************************************************************************************/}
+        <form onSubmit={handleRecipes} className="form">
+          <fieldset className="form">
+            <legend>Nouvelle recette</legend>
+            <label htmlFor="title">Titre de la recette</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              required
+              value={newRecipe.title}
+              onChange={handleRecipeChange}
+            />
+            <label htmlFor="description">Description</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              required
+              value={newRecipe.description}
+              onChange={handleRecipeChange}
+            />
+            <label htmlFor="preparationTime">Temps de préparation(min)</label>
+            <input
+              type="number"
+              min="1"
+              max="1000"
+              id="preparationTime"
+              name="preparationTime"
+              required
+              value={newRecipe.preparationTime}
+              onChange={handleRecipeChange}
+            />
+            <label htmlFor="breakTime">Temps de repos(min)</label>
+            <input
+              type="number"
+              min="1"
+              max="1000"
+              id="breakTime"
+              name="breakTime"
+              required
+              value={newRecipe.breakTime}
+              onChange={handleRecipeChange}
+            />
+            <label htmlFor="cookingTime">Temps de cuisson(min)</label>
+            <input
+              type="number"
+              min="1"
+              max="1000"
+              id="cookingTime"
+              name="cookingTime"
+              required
+              value={newRecipe.cookingTime}
+              onChange={handleRecipeChange}
+            />
+            <label htmlFor="ingredient">Les ingredients</label>
+            <input
+              type="text"
+              id="ingredient"
+              name="ingredient"
+              required
+              value={newRecipe.ingredient}
+              onChange={handleRecipeChange}
+            />
+            <label htmlFor="step">Les étapes</label>
+            <input
+              type="text"
+              id="step"
+              name="step"
+              required
+              value={newRecipe.step}
+              onChange={handleRecipeChange}
+            />
+            <label htmlFor="diet">Sélectionnez des Régimes :</label>
+            {!isEmpty(diets) &&
+              diets.map((diet, index) => (
+                <div key={index} name="diet">
+                  <label htmlFor={diet.diet_id}>
+                    {diet.diet_id + " " + diet.diet_name}
+                  </label>
+                  <input type="checkbox" onChange={handleRecipeChange} />
+                </div>
+              ))}
+
+            <label htmlFor="allergen">Sélectionnez des allergènes :</label>
+            {!isEmpty(allergens) &&
+              allergens.map((allergen, index) => (
+                <div key={index} name="allergen">
+                  <label htmlFor={allergen.allergen_id}>
+                    {allergen.allergen_id + " " + allergen.allergen_name}
+                  </label>
+                  <input type="checkbox" onChange={handleRecipeChange} />
+                </div>
+              ))}
+
+            <label htmlFor="isVisible">Visible que pour les patients :</label>
+            <input type="checkbox" id="isVisible" name="isVisible" />
+            <button type="submit">Ajouter</button>
+          </fieldset>
+        </form>
       </div>
     </>
   );

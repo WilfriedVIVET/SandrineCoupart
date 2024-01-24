@@ -1,28 +1,44 @@
 import Header from "../component/Header";
 import Card from "../component/Cards";
-
-import { useSelector } from "react-redux";
-import { isEmpty } from "../component/Utils";
+import { useDispatch, useSelector } from "react-redux";
+import { isEmpty } from "../Utils/Utils";
+import store from "../Redux/store/store";
+import { getRecipes } from "../Redux/actions/recipes.action";
+import { useEffect } from "react";
+store.dispatch(getRecipes());
 
 const Recette = () => {
-  const recip = useSelector((state) => state.recipesReducer);
+  const dispatch = useDispatch();
+  const recipeBase = useSelector((state) => state.recipesReducer);
   const userId = useSelector((state) => state.userIdReducer);
   const personalRecipes = useSelector((state) => state.personalRecipes);
+
+  useEffect(() => {
+    dispatch(getRecipes());
+  }, [dispatch]);
 
   return (
     <div>
       <Header />
       <div className="container">
         <div className="card-container">
-          {!isEmpty(recip) &&
+          {!isEmpty(recipeBase) &&
             isEmpty(userId) &&
-            recip.map((recips, index) => <Card recip={recips} key={index} />)}
+            recipeBase.map((recipes, index) => (
+              <Card recipe={recipes} key={index} />
+            ))}
 
           {!isEmpty(personalRecipes) &&
             !isEmpty(userId) &&
             personalRecipes.map((pRecipes, index) => (
-              <Card recip={pRecipes} key={index} />
+              <Card recipe={pRecipes} key={index} />
             ))}
+
+          {isEmpty(personalRecipes) && (
+            <span>
+              Pas encore de recettes personnalisées en fonction de vos critères
+            </span>
+          )}
         </div>
       </div>
     </div>
