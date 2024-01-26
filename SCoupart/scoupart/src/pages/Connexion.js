@@ -1,13 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../component/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getUserId } from "../Redux/actions/userId.action";
 import { getPersonalRecipes } from "../Redux/actions/personalRecipes.action";
 import store from "../Redux/store/store";
+import { useSelector } from "react-redux";
 
 const Connexion = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.userIdReducer);
 
   const [identity, setIdentity] = useState({
     name: "",
@@ -35,6 +37,18 @@ const Connexion = () => {
     }));
   };
 
+  useEffect(() => {
+    if (user && user.length > 0) {
+      if (user[0].name === "coupart" && user[0].firstname === "sandrine") {
+        navigate("../admin");
+      } else {
+        navigate("../recettes");
+      }
+    } else {
+      console.log("user est vide");
+    }
+  }, [user, navigate]);
+
   //Verification de la presence en base de donné de l utilisateur.
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,9 +57,10 @@ const Connexion = () => {
       const res = await axios.get(url);
 
       if (res.data > 0) {
-        store.dispatch(getUserId(identity.name, identity.firstName));
-        store.dispatch(getPersonalRecipes(identity.name, identity.firstName));
-        navigate("/recettes");
+        await store.dispatch(getUserId(identity.name, identity.firstName));
+        await store.dispatch(
+          getPersonalRecipes(identity.name, identity.firstName)
+        );
       } else {
         spanError.current.innerText = "Utilisateur non répertorié";
       }
@@ -57,14 +72,16 @@ const Connexion = () => {
   return (
     <>
       <Header />
-      <div className="connexion-container">
+      <div className="container">
         <form onSubmit={handleSubmit} className="formulaire">
           <h2>Connexion</h2>
+          <div className="trait"></div>
           <input
             type="text"
             name="firstName"
             placeholder="Votre prénom"
             required
+            autoComplete="off"
             value={identity.firstName}
             onChange={handleChange}
           />
@@ -73,6 +90,7 @@ const Connexion = () => {
             name="name"
             placeholder="Votre nom"
             required
+            autoComplete="off"
             value={identity.name}
             onChange={handleChange}
           />

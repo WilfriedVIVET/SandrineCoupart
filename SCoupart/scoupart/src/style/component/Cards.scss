@@ -1,18 +1,23 @@
 .card {
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: auto;
+  min-height: 55vh;
   width: 90%;
-  background-color:rgb(216, 77, 77);
+  background-color:$backContainer;
   border-radius: 35px;
-  padding-left: 25px;
-  justify-content: center;
-  
-  
-  margin-bottom: 10px;
+  border: 2px solid $decoFonce;
+  justify-content:space-around;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
   
  span{
   font-size: 1.2em;
+ }
+
+ strong{
+  color: $decoFonce;
  }
 
   > .card-title {
@@ -21,22 +26,6 @@
     justify-content: flex-start;
     text-transform: capitalize;
     margin: 20px;
-    
-  }
-
-  > .prepa {
-    height: 35%;
-   
-    
-  }
-
-  > .step {
-    height: 15%;
-    
-  }
-
-  > .card-footer {
-    height: 15%;
     
   }
 

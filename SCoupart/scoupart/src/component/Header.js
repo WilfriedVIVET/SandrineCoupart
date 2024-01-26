@@ -105,19 +105,27 @@ const Navbar = () => {
         <div className="espace"></div>
         <ul>
           <li className="li-navbar">
-            <NavLink to="/mention" className="reference">
+            <NavLink
+              to="/mention"
+              className={(nav) => (nav.isActive ? "nav-active " : "")}
+              id="reference"
+            >
               Mentions légales
             </NavLink>
           </li>
           <li className="li-navbar">
-            <NavLink to="/politique" className="reference">
+            <NavLink
+              to="/politique"
+              className={(nav) => (nav.isActive ? "nav-active" : "")}
+              id="reference"
+            >
               Politique de confidentialité
             </NavLink>
           </li>
         </ul>
       </div>
       <div className="login">
-        <span>{initial}</span>
+        <span className="initial">{initial}</span>
       </div>
       <img
         src="burger.png"

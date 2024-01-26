@@ -48,7 +48,32 @@ const Admin = () => {
     step: "",
     selectedDiets: [],
     selectedAllergens: [],
+    isVisible: 0,
   });
+
+  //Fonction qui efface le formulaire.
+  const resetForm = (e) => {
+    const form = e.target;
+    form.reset();
+    setNewUser({
+      name: "",
+      firstName: "",
+      selectedDiets: [],
+      selectedAllergens: [],
+    });
+    setNewRecipe({
+      title: "",
+      description: "",
+      preparationTime: "",
+      breakTime: "",
+      cookingTime: "",
+      ingredient: "",
+      step: "",
+      selectedDiets: [],
+      selectedAllergens: [],
+      isVisible: 0,
+    });
+  };
 
   const handleUserChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -75,13 +100,19 @@ const Admin = () => {
 
     setNewRecipe((prevData) => {
       if (type === "checkbox") {
-        const currentValue = prevData[name] || []; // Assurez-vous que c'est un tableau
-        return {
-          ...prevData,
-          [name]: checked
-            ? [...currentValue, value]
-            : currentValue.filter((item) => item !== value),
-        };
+        if (name === "isVisible") {
+          return {
+            ...prevData,
+            [name]: checked ? 1 : 0,
+          };
+        } else {
+          return {
+            ...prevData,
+            [name]: checked
+              ? [...prevData[name], value]
+              : prevData[name].filter((item) => item !== value),
+          };
+        }
       } else {
         return {
           ...prevData,
@@ -97,7 +128,9 @@ const Admin = () => {
     try {
       await postNewUser(newUser);
     } catch (error) {
-      console.error("Erreur lors de l'ajout de l'utilisateur:", error.message);
+      console.error("Erreur lors de l'ajout de l'utilisateur:", error);
+    } finally {
+      resetForm(e);
     }
   };
   //Post du nouveau régime
@@ -106,7 +139,9 @@ const Admin = () => {
     try {
       await postNewDiet(newDiet);
     } catch (error) {
-      console.error("Erreur lors de l'ajout du régime:", error.message);
+      console.error("Erreur lors de l'ajout du régime:", error);
+    } finally {
+      resetForm(e);
     }
   };
   //Post du nouvel allergène
@@ -115,16 +150,21 @@ const Admin = () => {
     try {
       await postNewAllergen(newAllergen);
     } catch (error) {
-      console.error("Erreur lors de l'ajout de l'allergène:", error.message);
+      console.error("Erreur lors de l'ajout de l'allergène:", error);
+    } finally {
+      resetForm(e);
     }
   };
   //Post de la nouvelle recette
   const handleRecipes = async (e) => {
     e.preventDefault();
     try {
+      console.log("recette" + JSON.stringify(newRecipe));
       await postNewRecipe(newRecipe);
     } catch (error) {
-      console.error("Erreur lors de l'ajout de la recette:", error.message);
+      console.error("Erreur lors de l'ajout de la recette:", error);
+    } finally {
+      resetForm(e);
     }
   };
 
@@ -300,7 +340,12 @@ const Admin = () => {
                   <label htmlFor={diet.diet_id}>
                     {diet.diet_id + " " + diet.diet_name}
                   </label>
-                  <input type="checkbox" onChange={handleRecipeChange} />
+                  <input
+                    type="checkbox"
+                    name="selectedDiets"
+                    value={diet.diet_id}
+                    onChange={handleRecipeChange}
+                  />
                 </div>
               ))}
 
@@ -311,12 +356,22 @@ const Admin = () => {
                   <label htmlFor={allergen.allergen_id}>
                     {allergen.allergen_id + " " + allergen.allergen_name}
                   </label>
-                  <input type="checkbox" onChange={handleRecipeChange} />
+                  <input
+                    type="checkbox"
+                    name="selectedAllergens"
+                    value={allergen.allergen_id}
+                    onChange={handleRecipeChange}
+                  />
                 </div>
               ))}
 
             <label htmlFor="isVisible">Visible que pour les patients :</label>
-            <input type="checkbox" id="isVisible" name="isVisible" />
+            <input
+              type="checkbox"
+              id="isVisible"
+              name="isVisible"
+              onChange={handleRecipeChange}
+            />
             <button type="submit">Ajouter</button>
           </fieldset>
         </form>

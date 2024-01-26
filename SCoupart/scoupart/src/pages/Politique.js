@@ -5,7 +5,7 @@ const Politique = () => {
   return (
     <>
       <Header />
-      <div className="cadre-container">
+      <div className="container">
         <div className="cadre">
           <h2>Politique de confidentialité :</h2>
           <p>

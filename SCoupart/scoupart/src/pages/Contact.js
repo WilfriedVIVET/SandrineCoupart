@@ -6,11 +6,12 @@ const Contact = () => {
     <>
       <Header />
 
-      <div className="contact">
+      <div className="container">
         <div className="info">
           <span>
             <h2>Sandrine COUPART</h2>
           </span>
+          <div className="trait"></div>
           <br />
           <span>&#9743; : 06.22.33.44.55</span>
           <br />

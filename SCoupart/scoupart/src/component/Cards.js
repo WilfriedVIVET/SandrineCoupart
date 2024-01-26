@@ -42,9 +42,9 @@ const Cards = ({ recipe }) => {
       </div>
       <div className="trait"></div>
       <div className="step">
-        <p>
+        <span>
           <strong>Les étapes :</strong> {recipe.step}
-        </p>
+        </span>
       </div>
       <div className="trait"></div>
       <div className="card-footer">

@@ -1,23 +1,17 @@
 
-.contact{
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .info{
        
-        padding: 10% 0 10% 10%;
-        height: 30%;
-        width: 80%;
-        background-color: white;
-        border-radius: 50px;
+       // padding: 10% 0 10% 10%;
+        height: 300px;
+        width: 100%;
         display: flex;
         flex-direction: column;
         font-size: 1.2em;
         font-weight: bold;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
    
         
     }

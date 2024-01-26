@@ -5,9 +5,13 @@ import axios from "axios";
 // Nouvel utilisateur:
 export const postNewUser = async (newUser) => {
   try {
-    await axios.post("http://localhost/API_COUPART/API/postUser.php", newUser);
+    const response = await axios.post(
+      "http://localhost/API_COUPART/API/postUser.php",
+      JSON.stringify(newUser)
+    );
+    alert(JSON.stringify(response.data.success));
   } catch (error) {
-    console.log("Erreur lors de l'ajout utilisateur", error.message);
+    console.log("Erreur lors de l'ajout utilisateur", error);
     throw error; // Renvoie l'erreur pour une gestion ultérieure
   }
 };
@@ -15,10 +19,11 @@ export const postNewUser = async (newUser) => {
 //Nouveau régime:
 export const postNewDiet = async (diet) => {
   try {
-    await axios.post(
+    const response = await axios.post(
       "http://localhost/API_COUPART/API/postDiet.php",
       JSON.stringify(diet)
     );
+    alert(JSON.stringify(response.data.success));
   } catch (error) {
     console.error("Erreur:", error);
   }
@@ -28,10 +33,11 @@ export const postNewDiet = async (diet) => {
 // Nouveau allergène:
 export const postNewAllergen = async (allergen) => {
   try {
-    await axios.post(
+    const response = await axios.post(
       "http://localhost/API_COUPART/API/postAllergen.php",
       JSON.stringify(allergen)
     );
+    alert(JSON.stringify(response.data.success));
   } catch (error) {
     console.error("Erreur lors de l'ajout d'allergène:", error);
   }
@@ -39,11 +45,15 @@ export const postNewAllergen = async (allergen) => {
 
 /***************************************************************** */
 //Nouvelle recette:
-export const postNewRecipe = async (recipeData) => {
+export const postNewRecipe = async (recipe) => {
   try {
-    axios.post("http://localhost/API_COUPART/API/postRecipe.php", recipeData);
+    const response = await axios.post(
+      "http://localhost/API_COUPART/API/postRecipe.php",
+      JSON.stringify(recipe)
+    );
+    alert(JSON.stringify(response.data.success));
   } catch (error) {
-    console.error("Erreur:", error);
+    console.error("Erreur Lors de l'ajout de la recette", error);
   }
 };
 
@@ -52,7 +62,6 @@ export const postNewRecipe = async (recipeData) => {
 
 export const postNewNotice = async (notice) => {
   try {
-    console.log("notice = " + JSON.stringify(notice));
     await axios.post("http://localhost/API_COUPART/API/postNotice.php", notice);
   } catch (error) {
     console.error("Erreur", error);

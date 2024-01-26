@@ -1,41 +1,61 @@
+/*
+MOBILE:
+width container = 90%
+margin top =20px
+
+*/
+
+/*Variable sass*/
+$backContainer: #F1E4C3;
+$navbar: #C6A969;
+$deco:#597E52;
+$decoFonce:#183f1c;
+
+$font-family: 'Indie Flower', cursive;
+$font-size: 16px;
+
 *{
     margin: 0;
     padding: 0;
     text-decoration: none;
     list-style: none;
-    
+    font-family: $font-family;
 }
 
 body{
-   
-    background-color: rgb(122, 122, 122);
-    background: url("../assets/images/fruits.jpg") no-repeat fixed 100% 100%;
+   background: url("../assets/images/fruits.jpg") no-repeat fixed 100% 100%;
+   font-family: $font-family;
+   font-size: $font-size;
 }
 
 a{
-    color: white;
+   color: $decoFonce;
+}
+
+h1,h2{
+    color:$decoFonce;
 }
 
 .container{
+    display: flex;
+    flex-direction: column;
     margin: auto;
     height: auto;
+    min-height: 50vh;
     width: 95%;
-    background-color: rgb(138, 145, 151);
+    background-color: $backContainer;
     border-radius: 15px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
     
 }
 
-
-
-.btn {
-    display: flex;
-    height: 50px;
-    width: 30%;
-    background-color: red;
-    margin: 15px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
+.trait{
+    height: 3px;
+    width: 70%;
+    background-color: $deco;
 }
+
+

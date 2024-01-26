@@ -20,7 +20,7 @@ const Recette = () => {
   return (
     <div>
       <Header />
-      <div className="container">
+      <div className="card-container">
         <div className="card-container">
           {!isEmpty(recipeBase) &&
             isEmpty(userId) &&

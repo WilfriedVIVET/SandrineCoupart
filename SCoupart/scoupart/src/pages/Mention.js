@@ -5,7 +5,7 @@ const Mention = () => {
   return (
     <>
       <Header />
-      <div className="cadre-container">
+      <div className="container">
         <div className="cadre">
           <h4>Mentions légales du site Sandrinecoupart </h4>
           <br />

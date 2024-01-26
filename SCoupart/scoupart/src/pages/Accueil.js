@@ -56,7 +56,7 @@ const Accueil = () => {
             <p>Ou contactez-moi afin de vous enregistrer.</p>
             <div className="connexion">
               <NavLink to="/contact" className="btn-connexion">
-                Contactez-moi.
+                Contact
               </NavLink>
             </div>
             <div className="reseaux">
