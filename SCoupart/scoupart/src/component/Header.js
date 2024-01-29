@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { isEmpty } from "../Utils/Utils";
 import { resetUserId } from "../Redux/actions/userId.action";
+import { resetPersonalRecipes } from "../Redux/actions/personalRecipes.action";
 
+//Navbar.
 const Navbar = () => {
   const [isActive, setIsActive] = useState(true);
   const [initial, setInitial] = useState("");
@@ -26,6 +28,7 @@ const Navbar = () => {
 
   const resetUser = () => {
     dispatch(resetUserId());
+    dispatch(resetPersonalRecipes());
   };
 
   const handleBodyClick = (event) => {
@@ -55,7 +58,7 @@ const Navbar = () => {
       </a>
 
       <div className={`nav-link ${isActive ? "" : "mobile-menu"}`}>
-        <ul>
+        <ul className="ulnav">
           <li className="li-navbar">
             <NavLink
               to={connect ? "/" : "/connexion"}

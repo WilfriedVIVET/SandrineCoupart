@@ -7,6 +7,7 @@ import { getRecipes } from "../Redux/actions/recipes.action";
 import { useEffect } from "react";
 store.dispatch(getRecipes());
 
+//Page des recettes.
 const Recette = () => {
   const dispatch = useDispatch();
   const recipeBase = useSelector((state) => state.recipesReducer);
@@ -21,25 +22,17 @@ const Recette = () => {
     <div>
       <Header />
       <div className="card-container">
-        <div className="card-container">
-          {!isEmpty(recipeBase) &&
-            isEmpty(userId) &&
-            recipeBase.map((recipes, index) => (
-              <Card recipe={recipes} key={index} />
-            ))}
+        {!isEmpty(recipeBase) &&
+          isEmpty(userId) &&
+          recipeBase.map((recipes, index) => (
+            <Card recipe={recipes} key={index} />
+          ))}
 
-          {!isEmpty(personalRecipes) &&
-            !isEmpty(userId) &&
-            personalRecipes.map((pRecipes, index) => (
-              <Card recipe={pRecipes} key={index} />
-            ))}
-
-          {isEmpty(personalRecipes) && (
-            <span>
-              Pas encore de recettes personnalisées en fonction de vos critères
-            </span>
-          )}
-        </div>
+        {!isEmpty(personalRecipes) &&
+          !isEmpty(userId) &&
+          personalRecipes.map((pRecipes, index) => (
+            <Card recipe={pRecipes} key={index} />
+          ))}
       </div>
     </div>
   );

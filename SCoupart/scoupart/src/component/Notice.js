@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { postNewNotice } from "../Utils/PostUtils";
 import { isEmpty } from "../Utils/Utils";
 
+//Avis et note des recettes personnalisées.
 const Notice = ({ recipe }) => {
   const userId = useSelector((state) => state.userIdReducer);
   const personalRecipes = useSelector((state) => state.personalRecipes);
@@ -29,9 +30,8 @@ const Notice = ({ recipe }) => {
 
       await postNewNotice(notice);
     } catch (error) {
-      console.error("Erreur lors de la publication de l'avis :", error.message);
+      alert("Erreur lors de la publication de l'avis :", error.message);
     } finally {
-      // Exécuté après que postNewNotice est terminé, qu'il ait réussi ou échoué
       reload();
       setClicked(!clicked);
     }
@@ -43,49 +43,59 @@ const Notice = ({ recipe }) => {
   };
 
   return (
-    <form onSubmit={(e) => handleNotice(e)}>
-      <div className="notice">
-        <div>
-          <label htmlFor="opinion">
-            <strong>Avis : </strong>
-          </label>
-          {clicked ? (
-            <strong>{recipe.opinion}</strong>
-          ) : (
-            <input
-              type="text"
-              name="opinion"
-              id="opinion"
-              placeholder="Laissez votre avis"
-              value={notice.opinion}
-              onChange={(e) =>
-                setNotice({ ...notice, opinion: e.target.value })
-              }
-            />
-          )}
+    <div>
+      <form onSubmit={(e) => handleNotice(e)}>
+        <br />
+        <div className="notice">
+          <div className="avis">
+            <label htmlFor="opinion">
+              <strong>Avis : </strong>
+            </label>
+            {clicked ? (
+              <strong>{recipe.opinion}</strong>
+            ) : (
+              <input
+                type="text"
+                name="opinion"
+                id="opinion"
+                className="input-avis"
+                placeholder="Laissez votre avis"
+                value={notice.opinion}
+                onChange={(e) =>
+                  setNotice({ ...notice, opinion: e.target.value })
+                }
+              />
+            )}
+          </div>
+
+          <div className="note">
+            <label htmlFor="note">
+              <strong>Note :</strong>
+            </label>
+            {clicked ? (
+              recipe.note ? (
+                <strong>{recipe.note}</strong>
+              ) : (
+                <strong>0</strong>
+              )
+            ) : (
+              <input
+                type="number"
+                id="note"
+                name="note"
+                min="0"
+                max="5"
+                value={notice.note}
+                className="input-note"
+                onChange={(e) => setNotice({ ...notice, note: e.target.value })}
+              />
+            )}
+            <strong>/5</strong>
+          </div>
+          <button type="submit">✏️ Editer</button>
         </div>
-        <div>
-          <label htmlFor="note">
-            <strong>Note : </strong>
-          </label>
-          {clicked ? (
-            <strong>{recipe.note}</strong>
-          ) : (
-            <input
-              type="number"
-              id="note"
-              name="note"
-              min="0"
-              max="5"
-              value={notice.note}
-              onChange={(e) => setNotice({ ...notice, note: e.target.value })}
-            />
-          )}
-          <span className="score">/5</span>
-        </div>
-        <button type="submit">Ajouter avis et note</button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

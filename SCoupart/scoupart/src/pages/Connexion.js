@@ -7,6 +7,7 @@ import { getPersonalRecipes } from "../Redux/actions/personalRecipes.action";
 import store from "../Redux/store/store";
 import { useSelector } from "react-redux";
 
+//Page de connexion.
 const Connexion = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.userIdReducer);
@@ -44,8 +45,6 @@ const Connexion = () => {
       } else {
         navigate("../recettes");
       }
-    } else {
-      console.log("user est vide");
     }
   }, [user, navigate]);
 
@@ -64,9 +63,7 @@ const Connexion = () => {
       } else {
         spanError.current.innerText = "Utilisateur non répertorié";
       }
-    } catch (error) {
-      console.log("Erreur lors de la requete au serveur", error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -76,6 +73,7 @@ const Connexion = () => {
         <form onSubmit={handleSubmit} className="formulaire">
           <h2>Connexion</h2>
           <div className="trait"></div>
+          <br />
           <input
             type="text"
             name="firstName"

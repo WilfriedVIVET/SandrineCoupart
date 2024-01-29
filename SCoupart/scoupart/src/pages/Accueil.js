@@ -3,6 +3,7 @@ import Header from "../component/Header";
 import { NavLink } from "react-router-dom";
 import { getUserId } from "../Redux/actions/userId.action";
 
+//Page d'accueil.
 const Accueil = () => {
   useEffect(() => {
     getUserId();
@@ -11,10 +12,11 @@ const Accueil = () => {
   return (
     <>
       <Header />
-      <div className="container">
+      <div className=" container-accueil">
         <div className="propos-container">
           <div className="propos">
             <img src="/portrait.jpg" alt="portrait" id="portrait" />
+
             <h2>À Propos</h2>
           </div>
           <div className="text">

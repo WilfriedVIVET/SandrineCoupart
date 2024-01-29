@@ -12,13 +12,14 @@ const Cards = ({ recipe }) => {
       setShowNotice(true);
     }
   }, [showNotice, personalRecipes]);
-
+  //Card recette de cuisine.
   return (
     <div className="card">
       <div className="card-title">
         <h2>{recipe.title}</h2>
       </div>
       <div className="trait"></div>
+      <br />
       <div className="prepa">
         <span>
           <strong>Description :</strong> {recipe.description}
@@ -39,14 +40,19 @@ const Cards = ({ recipe }) => {
         <span>
           <strong>Ingredients </strong>: {recipe.ingredient}
         </span>
+        <br />
       </div>
+      <br />
       <div className="trait"></div>
+      <br />
       <div className="step">
         <span>
           <strong>Les étapes :</strong> {recipe.step}
         </span>
       </div>
+      <br />
       <div className="trait"></div>
+      <br />
       <div className="card-footer">
         <span>
           <strong>Allergene :</strong> {recipe.allergen}
@@ -55,9 +61,12 @@ const Cards = ({ recipe }) => {
         <span>
           <strong>Régime :</strong> {recipe.regime}
         </span>
+        <br />
       </div>
+      <br />
       <div className="trait"></div>
       {showNotice && <Notice recipe={recipe} />}
+      <br />
     </div>
   );
 };

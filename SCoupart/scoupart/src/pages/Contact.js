@@ -1,11 +1,11 @@
 import React from "react";
 import Header from "../component/Header";
 
+//Page de contact.
 const Contact = () => {
   return (
     <>
       <Header />
-
       <div className="container">
         <div className="info">
           <span>

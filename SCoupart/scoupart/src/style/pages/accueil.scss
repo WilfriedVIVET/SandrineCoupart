@@ -1,4 +1,19 @@
 
+.container-accueil{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    height: auto;
+    min-height: 50vh;
+    width: 95%;
+    background-color: $backContainer;
+    border-radius: 15px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
 
 .propos-container{
     height: auto;
@@ -20,16 +35,16 @@
 #portrait{
     height: 120px;
     width: 120px;
-    border-radius: 60px;
+    border-radius: 650px;
     border: 4px solid $decoFonce;
     object-fit:cover;
+    box-shadow: 10px 10px 5px 0px rgba(7, 7, 7, 0.75);
 }
 
 .text {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
 
 .sign{
@@ -39,7 +54,6 @@
     font-weight: bold;
     margin-bottom: 20px;
 }
-/***************************************************/
 
 .service-container{
     margin: 10px;
@@ -56,11 +70,6 @@
     align-items: center;
 }
 
-img{
-    height: 20%;
-    width: 20%;
-}
-
 .connexion {
     display: flex;
     height: 50px;
@@ -70,6 +79,7 @@ img{
     justify-content: center;
     align-items: center;
     border-radius: 50px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
 .btn-connexion{
@@ -85,16 +95,13 @@ img{
     height: 150px;
     display: flex;
     flex-direction: column;
-    
 }
 
 .sociaux{
     display: flex;
     height: 100%;
     width: 100%;
-    
     >ul{
-        
         margin-top: 20px;
         width: 100%;
         display: flex;
@@ -115,4 +122,25 @@ img{
             }
         }
     }    
+}
+
+/************************************MEDIAQUERIES******************************************/
+@media screen and (min-width: 640px){
+    #portrait{
+        height: 240px;
+        width: 240px;
+    }
+
+    h2{
+        font-size: 3em;
+    }
+
+    p{
+        font-size: 2em;
+    }
+
+    .connexion{
+        font-size: 2em;
+    }
+
 }

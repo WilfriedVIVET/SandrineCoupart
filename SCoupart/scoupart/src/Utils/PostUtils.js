@@ -11,7 +11,6 @@ export const postNewUser = async (newUser) => {
     );
     alert(JSON.stringify(response.data.success));
   } catch (error) {
-    console.log("Erreur lors de l'ajout utilisateur", error);
     throw error; // Renvoie l'erreur pour une gestion ultérieure
   }
 };
@@ -25,7 +24,7 @@ export const postNewDiet = async (diet) => {
     );
     alert(JSON.stringify(response.data.success));
   } catch (error) {
-    console.error("Erreur:", error);
+    throw error;
   }
 };
 
@@ -39,7 +38,7 @@ export const postNewAllergen = async (allergen) => {
     );
     alert(JSON.stringify(response.data.success));
   } catch (error) {
-    console.error("Erreur lors de l'ajout d'allergène:", error);
+    throw error;
   }
 };
 
@@ -53,7 +52,7 @@ export const postNewRecipe = async (recipe) => {
     );
     alert(JSON.stringify(response.data.success));
   } catch (error) {
-    console.error("Erreur Lors de l'ajout de la recette", error);
+    throw error;
   }
 };
 
@@ -64,6 +63,6 @@ export const postNewNotice = async (notice) => {
   try {
     await axios.post("http://localhost/API_COUPART/API/postNotice.php", notice);
   } catch (error) {
-    console.error("Erreur", error);
+    alert("Erreur", error);
   }
 };

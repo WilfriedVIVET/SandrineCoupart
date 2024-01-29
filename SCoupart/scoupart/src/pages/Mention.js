@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../component/Header";
 
+//Page mention légale.
 const Mention = () => {
   return (
     <>

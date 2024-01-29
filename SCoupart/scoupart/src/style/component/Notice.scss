@@ -1,4 +1,50 @@
 
-.score{
-    font-size:0.5em;
+.notice{
+    height: auto;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    >button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    } 
 }
+
+strong, input{
+    font-size: 1.2em;
+}
+
+.avis{
+    height: 30px;
+    >input{
+        font-weight:300;
+    }
+}
+
+.note{
+    margin-top: 10px;
+    height:30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    >.strong-note{
+        font-size: 1.2em;
+    }
+}
+
+.input-avis{
+    background-color:$deco;
+    height: 25px;
+    width: 70%;
+    font-size: 1.2em;
+}
+
+.input-note{
+    background-color:$deco;
+    height: 25px;
+    width: 45px;
+    font-size: 1.2em;   
+}
+

@@ -9,12 +9,9 @@ export const getUserId = (name, firstName) => {
       const res = await axios.get(
         `http://localhost/API_COUPART/API/user/${name}/${firstName}`
       );
-      const userData = res.data;
 
-      dispatch({ type: GET_USERID, payload: userData });
-    } catch (error) {
-      console.error("Erreur lors de la récupération de l'utilisateur:", error);
-    }
+      dispatch({ type: GET_USERID, payload: res.data });
+    } catch (error) {}
   };
 };
 

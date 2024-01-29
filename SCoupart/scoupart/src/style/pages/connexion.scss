@@ -1,5 +1,4 @@
 
-
 .formulaire{
     display: flex;
     flex-direction: column;
@@ -15,20 +14,7 @@
         text-align: center;
         color: $decoFonce;
         font-size: 1.2em;
-       
-    }
-    >input::placeholder{
-        color: $deco;
-       
-    }
-
-    >button{
-        height: 30px;
-        width: 100px;
-        border-radius: 20px;
-        border-color:$decoFonce;
-        background-color: $deco;
-        font-size: medium;
+        margin-top: 10px;
     }
 }
 
@@ -36,3 +22,4 @@
     height: 20px;
     color: red;
 }
+

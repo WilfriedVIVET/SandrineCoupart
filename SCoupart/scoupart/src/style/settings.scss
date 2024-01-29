@@ -1,15 +1,10 @@
-/*
-MOBILE:
-width container = 90%
-margin top =20px
-
-*/
 
 /*Variable sass*/
-$backContainer: #F1E4C3;
-$navbar: #C6A969;
-$deco:#597E52;
-$decoFonce:#183f1c;
+
+$backContainer: #fadcd2;
+$navbar: #704d41;
+$deco:#9CAA7F;
+$decoFonce:#113701;
 
 $font-family: 'Indie Flower', cursive;
 $font-size: 16px;
@@ -23,7 +18,11 @@ $font-size: 16px;
 }
 
 body{
-   background: url("../assets/images/fruits.jpg") no-repeat fixed 100% 100%;
+    min-height: 100vh;
+   background: url("../assets/images/bois.jpg") no-repeat fixed 10% 10%;
+  // background-color: #52787e;
+  // background: #c669be;
+  // background: linear-gradient(160deg,#ecaae6 0%, #e1d0e7 80%);
    font-family: $font-family;
    font-size: $font-size;
 }
@@ -34,6 +33,8 @@ a{
 
 h1,h2{
     color:$decoFonce;
+    text-shadow: 2px 4px 4px rgba(0,0,0,0.6);
+    font-size: 2em;
 }
 
 .container{
@@ -45,17 +46,55 @@ h1,h2{
     width: 95%;
     background-color: $backContainer;
     border-radius: 15px;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 10px;
     justify-content: center;
     align-items: center;
-    
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
 .trait{
     height: 3px;
     width: 70%;
     background-color: $deco;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
+input{
+    background-color: $deco;
+    box-shadow: 6px 5px 8px 1px rgba(0,0,0,0.75) inset;
+}
 
+input::placeholder{
+    color: $decoFonce;
+    font-size: medium;
+}
+
+button{
+    height: 30px;
+    width: 200px;
+    border-radius: 20px;
+    border-color:$decoFonce;
+    background-color: $deco;
+    font-size: medium;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+fieldset{
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+/************************************MEDIAQUERIES******************************************/
+@media screen and (min-width: 640px){
+    
+    h2{
+        font-size: 3em;
+    }
+
+    p{
+        font-size: 2em;
+    }
+
+    .container{
+        max-width: 500px;
+    }
+}
