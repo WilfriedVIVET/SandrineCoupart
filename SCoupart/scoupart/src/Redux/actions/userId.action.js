@@ -11,7 +11,9 @@ export const getUserId = (name, firstName) => {
       );
 
       dispatch({ type: GET_USERID, payload: res.data });
-    } catch (error) {}
+    } catch (error) {
+      alert("Une erreur c'est produite" + error);
+    }
   };
 };
 

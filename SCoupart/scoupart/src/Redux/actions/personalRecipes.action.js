@@ -13,7 +13,9 @@ export const getPersonalRecipes = (name, firstName) => {
           firstName
       );
       dispatch({ type: GET_PERSONALRECIPES, payload: res.data });
-    } catch (error) {}
+    } catch (error) {
+      alert("Une erreur c'est produite" + error);
+    }
   };
 };
 
