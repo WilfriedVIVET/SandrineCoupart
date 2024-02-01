@@ -55,7 +55,7 @@ const Cards = ({ recipe }) => {
       <br />
       <div className="card-footer">
         <span>
-          <strong>Allergene :</strong> {recipe.allergen}
+          <strong>Allergène :</strong> {recipe.allergen}
         </span>
         <br />
         <span>

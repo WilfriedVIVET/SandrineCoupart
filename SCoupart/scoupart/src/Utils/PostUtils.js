@@ -11,7 +11,7 @@ export const postNewUser = async (newUser) => {
     );
     alert(JSON.stringify(response.data.success));
   } catch (error) {
-    throw error; // Renvoie l'erreur pour une gestion ultérieure
+    throw error;
   }
 };
 /****************************************************************** */

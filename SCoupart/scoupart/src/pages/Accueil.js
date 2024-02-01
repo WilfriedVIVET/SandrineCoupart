@@ -23,7 +23,7 @@ const Accueil = () => {
             <p>
               Je suis heureuse de vous accueillir sur mon site web. En tant que
               diététicienne, mon rôle est de vous aider à améliorer votre
-              alimentation, au regard de votre situation personnelle.Je vous
+              alimentation, au regard de votre situation personnelle. Je vous
               propose une approche diététique bienveillante, intuitive, fondée
               sur l’équilibre nutritionnel et sur le respect des sensations
               alimentaires et corporelles.
@@ -33,8 +33,8 @@ const Accueil = () => {
             <br />
             <p>
               Mon objectif premier est de vous permettre, à travers des recettes
-              personnalisés, d’améliorer votre qualité de vie, tout en tenant
-              compte de votre régime alimentaires ainsi que vos allergènes. Au
+              personnalisées, d’améliorer votre qualité de vie, tout en tenant
+              compte de votre régime alimentaire ainsi que vos allergènes. Au
               plaisir de vous conseiller prochainement.
             </p>
             <br />
@@ -62,7 +62,7 @@ const Accueil = () => {
               </NavLink>
             </div>
             <div className="reseaux">
-              <p>Vous pouvez egalement me suivre sur mes reseaux sociaux.</p>
+              <p>Vous pouvez également me suivre sur mes reseaux sociaux.</p>
               <div className="sociaux">
                 <ul>
                   <li>
