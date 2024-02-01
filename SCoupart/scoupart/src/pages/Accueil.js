@@ -67,7 +67,7 @@ const Accueil = () => {
                 <ul>
                   <li>
                     <a href="/#">
-                      <img src="/facebook.png" alt="facebook" />
+                      <img src="/Facebook.png" alt="facebook" />
                     </a>
                   </li>
                   <li>
