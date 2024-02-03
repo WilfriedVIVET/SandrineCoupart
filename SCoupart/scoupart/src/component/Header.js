@@ -7,6 +7,7 @@ import { resetPersonalRecipes } from "../Redux/actions/personalRecipes.action";
 
 //Navbar.
 const Navbar = () => {
+  const url = useSelector((state) => state.modeReducer);
   const [isActive, setIsActive] = useState(true);
   const [initial, setInitial] = useState("");
   const [connect, setConnect] = useState(false);
@@ -27,8 +28,8 @@ const Navbar = () => {
   );
 
   const resetUser = () => {
-    dispatch(resetUserId());
-    dispatch(resetPersonalRecipes());
+    dispatch(resetUserId(url));
+    dispatch(resetPersonalRecipes(url));
   };
 
   const handleBodyClick = (event) => {

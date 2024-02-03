@@ -15,10 +15,12 @@ import store from "../Redux/store/store";
 
 //Page administrateur.
 const Admin = () => {
+  const url = useSelector((state) => state.modeReducer);
+
   useEffect(() => {
-    store.dispatch(getDiets());
-    store.dispatch(getAllergens());
-  }, []);
+    store.dispatch(getDiets(url));
+    store.dispatch(getAllergens(url));
+  }, [url]);
 
   const allergens = useSelector((state) => state.allergensReducer);
   const diets = useSelector((state) => state.dietsReducer);

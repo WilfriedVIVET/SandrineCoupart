@@ -6,11 +6,14 @@ import { getUserId } from "../Redux/actions/userId.action";
 import { getPersonalRecipes } from "../Redux/actions/personalRecipes.action";
 import store from "../Redux/store/store";
 import { useSelector } from "react-redux";
+import { getMode } from "../Redux/actions/mode.action";
+store.dispatch(getMode());
 
 //Page de connexion.
 const Connexion = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.userIdReducer);
+  const url = useSelector((state) => state.modeReducer);
 
   const [identity, setIdentity] = useState({
     name: "",
@@ -52,13 +55,17 @@ const Connexion = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `http://localhost/API_COUPART/API/users/${identity.name}/${identity.firstName}`;
-      const res = await axios.get(url);
+      const res = await axios.get(
+        url + `users/${identity.name}/${identity.firstName}`
+      );
+      console.log(
+        "voir url : " + url + `users/${identity.name}/${identity.firstName}`
+      );
 
       if (res.data > 0) {
-        await store.dispatch(getUserId(identity.name, identity.firstName));
+        await store.dispatch(getUserId(url, identity.name, identity.firstName));
         await store.dispatch(
-          getPersonalRecipes(identity.name, identity.firstName)
+          getPersonalRecipes(url, identity.name, identity.firstName)
         );
       } else {
         spanError.current.innerText = "Utilisateur non répertorié";

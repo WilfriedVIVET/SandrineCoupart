@@ -5,18 +5,19 @@ import { isEmpty } from "../Utils/Utils";
 import store from "../Redux/store/store";
 import { getRecipes } from "../Redux/actions/recipes.action";
 import { useEffect } from "react";
-store.dispatch(getRecipes());
 
 //Page des recettes.
 const Recette = () => {
+  const url = useSelector((state) => state.modeReducer);
+  store.dispatch(getRecipes(url));
   const dispatch = useDispatch();
   const recipeBase = useSelector((state) => state.recipesReducer);
   const userId = useSelector((state) => state.userIdReducer);
   const personalRecipes = useSelector((state) => state.personalRecipes);
 
   useEffect(() => {
-    dispatch(getRecipes());
-  }, [dispatch]);
+    dispatch(getRecipes(url));
+  }, [dispatch, url]);
 
   return (
     <div>

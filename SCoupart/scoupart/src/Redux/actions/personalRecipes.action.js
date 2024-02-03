@@ -3,14 +3,14 @@ import axios from "axios";
 export const GET_PERSONALRECIPES = "GET_PERSONALRECIPES";
 export const RESET_PERSONALRECIPES = "RESET_PERSONALRECIPES";
 
-export const getPersonalRecipes = (name, firstName) => {
+export const getPersonalRecipes = (url, name, firstName) => {
   return async (dispatch) => {
     try {
+      console.log(
+        "voir url 2 : " + url + "personalRecipes/" + name + "/" + firstName
+      );
       const res = await axios.get(
-        "http://localhost/API_COUPART/API/personalRecipes/" +
-          name +
-          "/" +
-          firstName
+        url + "personalRecipes/" + name + "/" + firstName
       );
       dispatch({ type: GET_PERSONALRECIPES, payload: res.data });
     } catch (error) {

@@ -6,7 +6,7 @@ import axios from "axios";
 export const postNewUser = async (newUser) => {
   try {
     const response = await axios.post(
-      "http://localhost/API_COUPART/API/postUser.php",
+      "https://api-coupart-2d50e80c9143.herokuapp.com/postUser.php",
       JSON.stringify(newUser)
     );
     alert(JSON.stringify(response.data.success));
@@ -19,7 +19,7 @@ export const postNewUser = async (newUser) => {
 export const postNewDiet = async (diet) => {
   try {
     const response = await axios.post(
-      "http://localhost/API_COUPART/API/postDiet.php",
+      "https://api-coupart-2d50e80c9143.herokuapp.com/postDiet.php",
       JSON.stringify(diet)
     );
     alert(JSON.stringify(response.data.success));
@@ -33,7 +33,7 @@ export const postNewDiet = async (diet) => {
 export const postNewAllergen = async (allergen) => {
   try {
     const response = await axios.post(
-      "http://localhost/API_COUPART/API/postAllergen.php",
+      "https://api-coupart-2d50e80c9143.herokuapp.com/postAllergen.php",
       JSON.stringify(allergen)
     );
     alert(JSON.stringify(response.data.success));
@@ -47,7 +47,7 @@ export const postNewAllergen = async (allergen) => {
 export const postNewRecipe = async (recipe) => {
   try {
     const response = await axios.post(
-      "http://localhost/API_COUPART/API/postRecipe.php",
+      "https://api-coupart-2d50e80c9143.herokuapp.com/postRecipe.php",
       JSON.stringify(recipe)
     );
     alert(JSON.stringify(response.data.success));
@@ -61,7 +61,10 @@ export const postNewRecipe = async (recipe) => {
 
 export const postNewNotice = async (notice) => {
   try {
-    await axios.post("http://localhost/API_COUPART/API/postNotice.php", notice);
+    await axios.post(
+      "https://api-coupart-2d50e80c9143.herokuapp.com/postNotice.php",
+      notice
+    );
   } catch (error) {
     alert("Erreur", error);
   }

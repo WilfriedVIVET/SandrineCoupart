@@ -2,11 +2,14 @@ import React, { useEffect } from "react";
 import Header from "../component/Header";
 import { NavLink } from "react-router-dom";
 import { getUserId } from "../Redux/actions/userId.action";
+import { useSelector } from "react-redux";
 
 //Page d'accueil.
 const Accueil = () => {
+  const url = useSelector((state) => state.modeReducer);
+
   useEffect(() => {
-    getUserId();
+    getUserId(url);
   });
 
   return (
